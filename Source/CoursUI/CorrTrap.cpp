@@ -3,6 +3,8 @@
 
 #include "CorrTrap.h"
 #include "PlayerPawn.h"
+#include "PlayGameMode.h"
+#include "TrapManager.h"
 
 // Sets default values
 ACorrTrap::ACorrTrap()
@@ -20,7 +22,12 @@ void ACorrTrap::BeginPlay()
 {
 	Super::BeginPlay();
 	OnActorBeginOverlap.AddDynamic(this, &ACorrTrap::OnOverlap);
-	settings.SetDamage(10);
+	TObjectPtr<APlayGameMode> _gm = GetWorld()->GetAuthGameMode<APlayGameMode>();
+	if (!_gm)return;
+	TObjectPtr<ATrapManager> _tm = _gm->GetTrapManager();
+	if (!_tm) return;
+	_tm->AddElement(this);
+	//_allTraps = _tm->GetAllTraps();
 
 }
 
@@ -36,6 +43,6 @@ void ACorrTrap::OnOverlap(AActor* _this, AActor* _other)
 	UE_LOG(LogTemp, Warning, TEXT("Overlap"));
 	TObjectPtr<APlayerPawn> _player = Cast<APlayerPawn>(_other);
 	if (!_player)return;
-	_player->AddHealth(settings.damage);
+	_player->AddHealth(-settings.damage);
 }
 

@@ -80,6 +80,11 @@ int APlayerPawn::GetHeatlh()
 	return heatlh / pourcentFull;
 }
 
+int APlayerPawn::GetMaxHeatlh()
+{
+	return pourcentFull;
+}
+
 // Called to bind functionality to input
 void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

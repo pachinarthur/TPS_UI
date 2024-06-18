@@ -66,6 +66,8 @@ public:
 	void AddHealth(const int& _value);
 	UFUNCTION(BlueprintCallable)
 		int GetHeatlh();
+	UFUNCTION(BlueprintCallable)
+		int GetMaxHeatlh();
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
