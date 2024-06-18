@@ -35,7 +35,10 @@ void UCustomMovementComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 void UCustomMovementComponent::Move(const FInputActionValue& _value)
 {
 	if (!customOwner)return;
+
 	const FVector2D _movementValue = _value.Get<FVector2D>();
+	forwardMovement = _movementValue.Y;
+	rightMovement = _movementValue.X;
 	//UE_LOG(LogTemp, Warning, TEXT("Value Y : %f"), _movementValue.Y);
 	//UE_LOG(LogTemp, Warning, TEXT("Value X : %f"), _movementValue.X);
 	if (_movementValue.Y != 0) {

@@ -25,15 +25,15 @@ class COURSUI_API APlayerPawn : public APawn
 			TObjectPtr<USpringArmComponent> springArm = nullptr;
 		UPROPERTY(EditAnywhere, Category = "PlayerPawn|Components")
 			TObjectPtr<UCameraComponent> camera = nullptr;
-		UPROPERTY(EditAnywhere, Category = "PlayerPawn|Components")
-			TObjectPtr<UCustomMovementComponent> movement = nullptr;
 protected:
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerPawn|Components")
+			TObjectPtr<UCustomMovementComponent> movement = nullptr;
 		UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "PlayerPawn|Components")
 			TObjectPtr<UCustomAttackComponent> attack = nullptr;
 
 		UPROPERTY(EditAnywhere, Category = "PlayerPawn|Input")
 			TObjectPtr<UInputMappingContext> mappingContext = nullptr;
-		UPROPERTY(EditAnywhere, Category = "PlayerPawn|Input")
+		UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "PlayerPawn|Input")
 			TObjectPtr<UInputAction> moveInput = nullptr;
 		UPROPERTY(EditAnywhere, Category = "PlayerPawn|Input")
 			TObjectPtr<UInputAction> rotateInput = nullptr;
@@ -54,6 +54,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		UCustomAttackComponent* GetAttackComponent() { return attack; }
+	UFUNCTION(BlueprintCallable)
+		UCustomMovementComponent* GetMouvementComponent() { return movement; }
 	
 protected:
 	// Called when the game starts or when spawned
